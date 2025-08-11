@@ -13,4 +13,4 @@ access_gym_addional.payment.lines,access.gym.addional.payment.lines,model_gym_ad
 access_gym_item,access.gym.item,model_gym_item,base.group_user,1,1,1,1
 access_gym_register,access.gym.register,model_gym_register,base.group_user,1,1,1,1
 access_add_payment,access.add.payment,model_add_payment,base.group_user,1,1,1,1
-access_gym_membership,access.access.gym.membership,model_gym_membership,base.group_user,1,1,1,1
+access_gym_membership,access.gym.membership,model_gym_membership,base.group_user,1,1,1,1
