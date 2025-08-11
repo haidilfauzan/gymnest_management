@@ -1,0 +1,16 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_gym_gym,access.gym.gym,model_gym_gym,base.group_user,1,1,1,1
+access_gym_company,access.gym.company,model_gym_company,base.group_user,1,1,1,1
+access_gym_review,access.gym.review,model_gym_review,base.group_user,1,1,1,1
+access_gym_gallery,access.gym.gallery,model_gym_gallery,base.group_user,1,1,1,1
+access_gym_facility,access.gym.facility,model_gym_facility,base.group_user,1,1,1,1
+access_gym_packages,access.gym.packages,model_gym_packages,base.group_user,1,1,1,1
+access_packages_type, access.packages.type,model_packages_type,base.group_user,1,1,1,1
+access_gymnest_user, access.gymnest.user,model_gymnest_user,base.group_user,1,1,1,1
+access_gym_register,access.gym.register,model_gym_register,base.group_user,1,1,1,1
+access_gym_addional.payment,access.gym.addional.payment,model_gym_addional_payment,base.group_user,1,1,1,1
+access_gym_addional.payment.lines,access.gym.addional.payment.lines,model_gym_addional_payment_lines,base.group_user,1,1,1,1
+access_gym_item,access.gym.item,model_gym_item,base.group_user,1,1,1,1
+access_gym_register,access.gym.register,model_gym_register,base.group_user,1,1,1,1
+access_add_payment,access.add.payment,model_add_payment,base.group_user,1,1,1,1
+access_gym_membership,access.access.gym.membership,model_gym_membership,base.group_user,1,1,1,1

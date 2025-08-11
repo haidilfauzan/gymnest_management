@@ -1,0 +1,124 @@
+<odoo>
+
+<!-- Form View untuk Gym Membership -->
+    <record id="view_gym_membership_form" model="ir.ui.view">
+        <field name="name">gym.membership.form</field>
+        <field name="model">gym.membership</field>
+        <field name="arch" type="xml">
+            <form string="Gym Membership">
+                <header>
+                    <button name="action_generate_qr_code" string="Generate QR Code" type="object" class="oe_highlight"/>
+                   
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="member_id"/>
+                            <field name="package_id"/>
+                            <field name="membership_code"/>
+                        </group>
+                        <group>
+                            <field name="start_datetime"/>
+                            <field name="end_datetime"/>
+                            <field name="state"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="QR Code">
+                            <!-- Menampilkan gambar QR Code -->
+                            <field name="qr_code" widget="image" class="oe_avatar"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- list View untuk Gym Membership -->
+    <record id="view_gym_membership_list" model="ir.ui.view">
+        <field name="name">gym.membership.list</field>
+        <field name="model">gym.membership</field>
+        <field name="arch" type="xml">
+            <list string="Gym Memberships">
+                <field name="name"/>
+                <field name="member_id"/>
+                <field name="package_id"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+ <record id="gym_register_view_list" model="ir.ui.view">
+        <field name="name">gym.register.list</field>
+        <field name="model">gym.register</field>
+        <field name="arch" type="xml">
+            <list string="Gyms">
+                <field name="name"/>
+                <field name="gym_id"/>
+                <field name="member_id"/>
+                <field name="total"/>
+                 <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="gym_register_view_form" model="ir.ui.view">
+        <field name="name">gym.register.form</field>
+        <field name="model">gym.register</field>
+        <field name="arch" type="xml">
+            <form string="Gym">
+                 <header>
+                      <button name="register_action" string="Register"
+                            type="object" class="oe_highlight"
+                            invisible="state == 'registered'"/>
+                      <button name="draft_action" string="Draft"
+                            type="object" class="oe_highlight"
+                            invisible="state == 'draft'"/>
+                     <button name="cancel_action" string="Cancel"
+                            type="object" class="oe_highlight"
+                            invisible="state == 'cancel'"/>
+                     <field name="state" widget="statusbar" options="{'clickable': True}"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+
+                        </group>
+                        <group>
+                            <field name="gym_id"/>
+                            <field name="member_id"/>
+
+                        </group>
+                    </group>
+                 <notebook>
+                      <page string="Add Payment">
+                        <field name="add_payment_ids" >
+                            <list editable="bottom">
+                                <field name="payment_id"/>
+                                <field name="item_id" attrs="{'readonly': [('gym_id', '=', False)], 'required': [('gym_id', '!=', False)]}"/>
+                                <field name="qty"/>
+                                 <field name="amount"/>
+                            </list>
+                        </field>
+                          <field name="total"/>
+                      </page>
+                 </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+     <record id="action_gym_membership" model="ir.actions.act_window">
+        <field name="name">Membership</field>
+        <field name="res_model">gym.membership</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+     <record id="action_gym_register" model="ir.actions.act_window">
+        <field name="name">Register</field>
+        <field name="res_model">gym.register</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+</odoo>

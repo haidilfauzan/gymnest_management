@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_gym_membership_card">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="oe_structure"/>
+                        <div class="text-center">
+                            <h2>Membership Card</h2>
+                            <h3><span t-field="doc.member_id.name"/></h3>
+                        </div>
+                        
+                        <div class="row mt-4">
+                            <div class="col-6">
+                                <table class="table table-sm table-borderless">
+                                    <tr>
+                                        <td><strong>Membership ID:</strong></td>
+                                        <td><span t-field="doc.name"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Package:</strong></td>
+                                        <td><span t-field="doc.package_id.name"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Start Date:</strong></td>
+                                        <td><span t-field="doc.start_datetime" t-options='{"widget": "datetime"}'/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>End Date:</strong></td>
+                                        <td><span t-field="doc.end_datetime" t-options='{"widget": "datetime"}'/></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="col-6 text-center">
+                                <p><strong>Your QR Code:</strong></p>
+                                <img t-if="doc.qr_code" t-att-src="image_data_uri(doc.qr_code)" style="max-height: 200px;"/>
+                                <p t-else="">QR Code not generated yet.</p>
+                                <p class="text-muted"><span t-field="doc.membership_code"/></p>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_gym_membership" model="ir.actions.report">
+    <field name="name">Membership Card</field>
+    <field name="model">gym.membership</field>
+    <field name="report_type">qweb-pdf</field>
+    <field name="report_name">gym_management.report_gym_membership_card</field>
+    <field name="report_file">gym_management.report_gym_membership_card</field>
+    <field name="print_report_name">'Membership Card - %s' % (object.name)</field>
+    <field name="binding_model_id" ref="model_gym_membership"/>
+    <field name="binding_type">report</field>
+</record>
+</odoo>

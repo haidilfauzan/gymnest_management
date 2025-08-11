@@ -1,0 +1,67 @@
+<odoo>
+    <menuitem
+        id="menu_gym_root"
+        name="Gym Management"
+        sequence="10" web_icon="vista_backend_theme,static/src/img/icons/inventory.png"/>
+
+    <menuitem
+        id="menu_gym_configuration"
+        name="Configuration"
+        parent="menu_gym_root"
+        sequence="99"/>
+
+     <menuitem
+        id="menu_gym_packages_type"
+        name="Packages Type"
+        parent="menu_gym_configuration"
+        action="action_packages_type"
+        sequence="2"/>
+
+    <menuitem
+        id="menu_packages"
+        name="Packages"
+        parent="menu_gym_root"
+        action="action_packages"
+        sequence="20"/>
+
+     <menuitem
+        id="menu_gym_register_root"
+        name="Gym Register"
+        sequence="11" web_icon="vista_backend_theme,static/src/img/icons/documents.png"/>
+
+     <menuitem
+        id="menu_gym_register"
+        name="Gyms Register"
+        parent="menu_gym_register_root"
+        action="action_gym_register"
+        sequence="10"/>
+
+    <menuitem
+        id="menu_gym_membership"
+        name="Gyms Membership"
+        parent="menu_gym_register_root"
+        action="action_gym_membership"
+        sequence="10"/>
+
+
+    <menuitem
+        id="menu_gym_configuration_facility"
+        name="Facilities"
+        parent="menu_gym_configuration"
+        action="action_gym_facility"
+        sequence="1"/>
+
+     <menuitem
+        id="menu_gym_item"
+        name="Item"
+        parent="menu_gym_configuration"
+        action="action_gym_item"
+        sequence="1"/>
+
+    <menuitem
+        id="menu_gym_gym"
+        name="Gyms"
+        parent="menu_gym_root"
+        action="action_gym_gym"
+        sequence="10"/>
+</odoo>

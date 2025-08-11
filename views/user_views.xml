@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Kanban View -->
+    <record id="view_gymnest_user_kanban" model="ir.ui.view">
+        <field name="name">gymnest.user.kanban</field>
+        <field name="model">gymnest.user</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_small_column">
+                <field name="image_1920"/>
+                <field name="user_id"/>
+                <field name="user_type"/>
+                <field name="gender"/>
+                <field name="state"/>
+
+                <templates>
+                    <t t-name="card" class="flex-row">
+<!--                        <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active"/>-->
+                            <aside class="o_kanban_aside_full">
+                                <field name="image_1920" alt="Contact image" class="h-100" widget="image" options="{'img_class': 'object-fit-cover'}"/>
+                            </aside>
+                            <main class="ps-2 ps-md-0">
+                                <div class="mb-1">
+                                    <field name="name" class="mb-0 fw-bold fs-5"/>
+                                </div>
+                                <field name="login" class="text-truncate"/>
+
+                            </main>
+                        <footer>
+                            <field name="gender"/>
+                            <field name="state"/>
+                        </footer>
+<!--                        <div class="o_kanban_record">-->
+<!--                            <div class="o_kanban_image">-->
+<!--                                <img t-att-src="kanban_image('gymnest.user', 'photo', record.id.value)" class="img img-fluid"/>-->
+<!--                            </div>-->
+<!--                            <div class="o_kanban_details">-->
+<!--                                <span><field name="user_type"/></span><br/>-->
+<!--                                <span></span><br/>-->
+<!--                                <span>Status: <field name="state"/></span>-->
+<!--                            </div>-->
+
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- List View -->
+    <record id="view_gymnest_user_list" model="ir.ui.view">
+        <field name="name">gymnest.user.list</field>
+        <field name="model">gymnest.user</field>
+        <field name="arch" type="xml">
+            <list string="Gymnest Users">
+                <field name="name"/>
+                <field name="user_type"/>
+                <field name="gender"/>
+                <field name="date_of_birth"/>
+                <field name="mobile_number"/>
+                <field name="join_date"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_gymnest_user_form" model="ir.ui.view">
+        <field name="name">gymnest.user.form</field>
+        <field name="model">gymnest.user</field>
+        <field name="arch" type="xml">
+            <form string="Gymnest User">
+                <header>
+                     <field name="state" widget="statusbar" options="{'clickable': True}"/>
+                </header>
+                <sheet>
+                     <field name="image_1920" widget="image" class="oe_avatar"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="user_type"/>
+                            <field name="gender"/>
+                            <field name="date_of_birth"/>
+
+                        </group>
+                        <group>
+                            <field name="join_date"/>
+                            <field name="mobile_number"/>
+                            <field name="login" string="Email"/>
+
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+        <!-- Action -->
+    <record id="action_gymnest_user" model="ir.actions.act_window">
+        <field name="name">Gymnest Users</field>
+        <field name="res_model">gymnest.user</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create the first Gymnest User</p>
+        </field>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem id="menu_gymnest_user" name="Users" sequence="10" web_icon="vista_backend_theme,static/src/img/icons/recruitment.png"/>
+    <menuitem id="menu_gymnest_user_action" name="Manage Users"
+              parent="menu_gymnest_user" action="action_gymnest_user" sequence="10"/>
+
+</odoo>
