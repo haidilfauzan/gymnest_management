@@ -312,6 +312,7 @@ class GymAPI(http.Controller):
                 'date_of_birth': user.date_of_birth.isoformat() if user.date_of_birth else None,
                 'mobile_number': user.mobile_number,
                 'address': user.address,
+                'geolocation': user.geolocation,
                 'height': user.height,
                 'weight': user.weight,
                 'age': user.age,
@@ -335,7 +336,7 @@ class GymAPI(http.Controller):
                 return {'status': 'error', 'message': 'Gymnest user not found.'}
 
             # Siapkan dictionary berisi field yang boleh diupdate
-            allowed_fields = ['mobile_number', 'address', 'weight', 'height']
+            allowed_fields = ['mobile_number', 'address', 'weight', 'height', 'geolocation']
             vals_to_update = {}
             for field in allowed_fields:
                 if field in kw:

@@ -13,6 +13,7 @@ class GymnestUser(models.Model):
     date_of_birth = fields.Date(string='Date Of Birth', required=True, tracking=True)
     mobile_number = fields.Char(string='Phone Number', tracking=True)
     address = fields.Char(string='Address', tracking=True)
+    geolocation = fields.Char(string='Geolocation (Lat,Lng)')
     height = fields.Float(string='Height')
     weight = fields.Float(string='Weight')
     age = fields.Integer(string='Age')
@@ -20,3 +21,4 @@ class GymnestUser(models.Model):
     state = fields.Selection(string='Status', selection=[('draft', 'Draft'), ('active', 'Active'), ('withdraw', 'Withdraw'), ('inactive', 'Inactive'), ('blacklist', 'Blacklist')], default='draft', tracking=True)  # state
     membership_ids = fields.One2many('gym.membership', 'member_id',string='Memberships')
     register_ids = fields.One2many('gym.register', 'member_id',string='Registers')
+    
