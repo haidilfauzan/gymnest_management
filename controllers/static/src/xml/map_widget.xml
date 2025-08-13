@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
-    <t t-name="gym_management.MapPickerWidget" owl="1">
+    <t t-name="gymnest_management.MapPickerWidget" owl="1">
         <div>
             <!-- The input field to show the coordinate string -->
             <input type="text" class="o_input" t-att-value="props.value" readonly="1"/>

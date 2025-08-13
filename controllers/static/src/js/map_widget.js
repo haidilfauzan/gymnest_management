@@ -7,7 +7,7 @@ import { useExternalListener } from "@odoo/owl";
 const { Component, onMounted, onWillUpdateProps, useRef } = owl;
 
 export class MapPickerWidget extends CharField {
-    static template = "gym_management.MapPickerWidget";
+    static template = "gymnest_management.MapPickerWidget";
 
     setup() {
         super.setup();

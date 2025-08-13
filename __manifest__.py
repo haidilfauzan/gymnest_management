@@ -21,8 +21,8 @@
     'assets': {
         'web.assets_backend': [
             # Daftarkan file JS dan XML Anda di sini
-            'gymnest_management/static/src/js/map_widget.js',
-            'gymnest_management/static/src/xml/map_widget.xml',
+            'static/src/js/map_widget.js',
+            'static/src/xml/map_widget.xml',
         ],
     },
     'installable': True,
