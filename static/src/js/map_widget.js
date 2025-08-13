@@ -29,16 +29,15 @@ export class MapPickerWidget extends CharField {
     }
 
     getCoords(value) {
-        if (value && value.includes(',')) {
-            const parts = value.split(',');
-            const lat = parseFloat(parts[0]);
-            const lng = parseFloat(parts[1]);
-            if (!isNaN(lat) && !isNaN(lng)) {
-                return [lat, lng];
-            }
+    if (typeof value === 'string' && value.includes(',')) {
+        const parts = value.split(',');
+        const lat = parseFloat(parts[0]);
+        const lng = parseFloat(parts[1]);
+        if (!isNaN(lat) && !isNaN(lng)) {
+            return [lat, lng];
         }
-        return [this.DEFAULT_LAT, this.DEFAULT_LNG];
     }
+    return [this.DEFAULT_LAT, this.DEFAULT_LNG];
 
     loadMap() {
         const coords = this.getCoords(this.props.value);
@@ -78,13 +77,13 @@ export class MapPickerWidget extends CharField {
     }
 
     updateMarker(value) {
-        if (this.map && this.marker) {
-            const coords = this.getCoords(value);
-            const latLng = L.latLng(coords[0], coords[1]);
-            this.marker.setLatLng(latLng);
-            this.map.panTo(latLng);
-        }
-    }
+    if (!value || !this.map || !this.marker) return;
+
+    const coords = this.getCoords(value);
+    const latLng = L.latLng(coords[0], coords[1]);
+    this.marker.setLatLng(latLng);
+    this.map.panTo(latLng);
+}
 }
 
 registry.category("fields").add("map_picker", MapPickerWidget);

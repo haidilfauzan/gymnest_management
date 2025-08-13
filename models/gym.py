@@ -91,7 +91,12 @@ class GymGym(models.Model):
                                                 string='Items')
 
     # --- Relationships ---
-    company_id = fields.Many2one('gym.company', string='Company')
+    company_id = fields.Many2one(
+    'res.company',
+    string='Company',
+    required=True,
+    default=lambda self: self.env.company
+)
     # `review_ids` akan otomatis terisi dari field `gym_id` di `gym.review`
     review_ids = fields.One2many('gym.review', 'gym_id', string='Reviews')
     # `gallery_ids` akan otomatis terisi dari field `gym_id` di `gym.gallery`

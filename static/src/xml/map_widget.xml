@@ -3,7 +3,8 @@
     <t t-name="gymnest_management.MapPickerWidget" owl="1">
         <div>
             <!-- The input field to show the coordinate string -->
-            <input type="text" class="o_input" t-att-value="props.value" readonly="1"/>
+            <input type="text" class="o_input" t-att-value="props.value || ''" readonly="1"/>
+
             <!-- The div where the map will be rendered -->
             <div t-ref="map" style="height: 300px; width: 100%; margin-top: 5px;"></div>
         </div>
