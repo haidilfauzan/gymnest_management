@@ -18,6 +18,13 @@
         'report/membership_report.xml',
         
     ],
+    'assets': {
+        'web.assets_backend': [
+            # Daftarkan file JS dan XML Anda di sini
+            'gym_management/static/src/js/map_widget.js',
+            'gym_management/static/src/xml/map_widget.xml',
+        ],
+    },
     'installable': True,
     'application': True,
     'license': 'LGPL-3',
