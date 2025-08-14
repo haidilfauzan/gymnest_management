@@ -2,88 +2,87 @@
 
 import { registry } from "@web/core/registry";
 import { CharField } from "@web/views/fields/char/char_field";
-import { useExternalListener } from "@odoo/owl";
+import { onMounted, onWillUnmount, useRef } from "@odoo/owl";
 
-const { Component, onMounted, onWillUpdateProps, useRef } = owl;
-
-export class MapPickerWidget extends CharField {
-    static template = "gymnest_management.MapPickerWidget";
-
+export class LeafletMapWidget extends CharField {
     setup() {
         super.setup();
-        this.mapRef = useRef("map");
+        this.mapContainer = useRef("mapContainer");
         this.map = null;
         this.marker = null;
 
-        // Default coordinates (Jakarta, Indonesia) if value is empty
-        this.DEFAULT_LAT = -6.2088;
-        this.DEFAULT_LNG = 106.8456;
-
         onMounted(() => {
-            this.loadMap();
+            // Pastikan elemen container ada sebelum me-render peta
+            if (this.mapContainer.el) {
+                this.renderMap();
+            }
         });
 
-        onWillUpdateProps((nextProps) => {
-            this.updateMarker(nextProps.value);
+        onWillUnmount(() => {
+            if (this.map) {
+                this.map.remove();
+            }
         });
     }
 
-    getCoords(value) {
-    if (typeof value === 'string' && value.includes(',')) {
-        const parts = value.split(',');
-        const lat = parseFloat(parts[0]);
-        const lng = parseFloat(parts[1]);
-        if (!isNaN(lat) && !isNaN(lng)) {
-            return [lat, lng];
+    renderMap() {
+        // Default coordinates (e.g., Jakarta, Indonesia) if no value
+        let lat = -6.2088;
+        let lng = 106.8456;
+        let zoom = 13;
+
+        // PERBAIKAN: Tambahkan pemeriksaan untuk props.record.data
+        const value = this.props.record.data ? this.props.record.data[this.props.name] : null;
+        if (value) {
+            const parts = value.split(',');
+            if (parts.length === 2) {
+                const parsedLat = parseFloat(parts[0]);
+                const parsedLng = parseFloat(parts[1]);
+                // Pastikan hasil parse adalah angka
+                if (!isNaN(parsedLat) && !isNaN(parsedLng)) {
+                    lat = parsedLat;
+                    lng = parsedLng;
+                }
+            }
         }
-    }
-    return [this.DEFAULT_LAT, this.DEFAULT_LNG];
 
-    loadMap() {
-        const coords = this.getCoords(this.props.value);
+        // Initialize map
+        this.map = L.map(this.mapContainer.el).setView([lat, lng], zoom);
 
-        // Load Leaflet CSS if not already loaded
-        if (!document.querySelector('link[href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"]')) {
-            const link = document.createElement('link');
-            link.rel = 'stylesheet';
-            link.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
-            document.head.appendChild(link);
-        }
-        
-        // Load Leaflet JS
-        const script = document.createElement('script');
-        script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
-        script.onload = () => {
-            this.map = L.map(this.mapRef.el).setView(coords, 13);
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '© OpenStreetMap contributors'
-            }).addTo(this.map);
+        // Add tile layer from OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(this.map);
 
-            this.marker = L.marker(coords).addTo(this.map);
+        // Add marker
+        this.marker = L.marker([lat, lng], { draggable: true }).addTo(this.map);
 
-            this.map.on('click', (e) => {
-                const lat = e.latlng.lat;
-                const lng = e.latlng.lng;
-                const newValue = `${lat},${lng}`;
-                
-                // Update the field value in Odoo
-                this.props.update(newValue);
+        // Event listener for map click
+        this.map.on('click', (e) => {
+            this.updateCoordinates(e.latlng);
+        });
 
-                // Move the marker
-                this.marker.setLatLng(e.latlng);
-            });
-        };
-        document.head.appendChild(script);
+        // Event listener for marker drag
+        this.marker.on('dragend', (e) => {
+            this.updateCoordinates(e.target.getLatLng());
+        });
     }
 
-    updateMarker(value) {
-    if (!value || !this.map || !this.marker) return;
+    updateCoordinates(latlng) {
+        const { lat, lng } = latlng;
+        const newValue = `${lat.toFixed(7)},${lng.toFixed(7)}`;
 
-    const coords = this.getCoords(value);
-    const latLng = L.latLng(coords[0], coords[1]);
-    this.marker.setLatLng(latLng);
-    this.map.panTo(latLng);
-}
+        // Update marker position
+        this.marker.setLatLng(latlng);
+        this.map.panTo(latlng);
+
+        // Update Odoo field value
+        this.props.record.update({ [this.props.name]: newValue });
+    }
 }
 
-registry.category("fields").add("map_picker", MapPickerWidget);
+// Definisikan template untuk widget
+LeafletMapWidget.template = "gym_management.LeafletMapWidget";
+
+// Daftarkan widget baru ke dalam registry Odoo
+registry.category("fields").add("leaflet_map_widget", LeafletMapWidget);

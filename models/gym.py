@@ -1,5 +1,5 @@
 # gym_management/models/gym_models.py
-from odoo import models, fields
+from odoo import models, fields, api, _
     # addional_payment_ids = fields.One2many('gym.addional.payment', 'gym_register_id', string='Payment')
 
 class GymAddionalPayment(models.Model):
@@ -82,7 +82,6 @@ class GymGym(models.Model):
     name = fields.Char(string='Name', required=True)
     description = fields.Text(string='Description')
     address = fields.Text(string='Address')
-    geolocation = fields.Char(string='Geolocation')
     rating = fields.Selection([
         ('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5')
     ], string='Average Rating')
@@ -92,11 +91,9 @@ class GymGym(models.Model):
 
     # --- Relationships ---
     company_id = fields.Many2one(
-    'res.company',
-    string='Company',
-    required=True,
-    default=lambda self: self.env.company
-)
+        'gym.company',
+        string='Company',
+    )
     # `review_ids` akan otomatis terisi dari field `gym_id` di `gym.review`
     review_ids = fields.One2many('gym.review', 'gym_id', string='Reviews')
     # `gallery_ids` akan otomatis terisi dari field `gym_id` di `gym.gallery`
@@ -104,4 +101,29 @@ class GymGym(models.Model):
     facility_ids = fields.Many2many('gym.facility', string='Facilities')
     gym_package_ids = fields.One2many('gym.packages', 'gym_id', string='Gym Packages')
     state = fields.Selection([('draft','Draft'),('active','Active'),('inactive','Inactive')], string='Status', default='draft',)
+    partner_id = fields.Many2one('res.partner', string='Partner')
+    geolocation = fields.Char(string='Geolocation')
+    state_id = fields.Many2one('gymnest.state', string='Province')
+    city_id = fields.Many2one(
+        'gymnest.city',
+        string='City',
+        domain="[('state_id', '=', state_id)]"  # Domain dinamis
+    )
 
+    class GymnestState(models.Model):
+        _name = 'gymnest.state'
+        _description = 'State / Province for Gymnest'
+        _order = 'name'
+
+        name = fields.Char(string='Province Name', required=True)
+        geolocation = fields.Char(string='Geolocation (Lat,Lng)')
+        city_ids = fields.One2many('gymnest.city', 'state_id', string='Cities')
+
+    class GymnestCity(models.Model):
+        _name = 'gymnest.city'
+        _description = 'City for Gymnest'
+        _order = 'name'
+
+        name = fields.Char(string='City Name', required=True)
+        geolocation = fields.Char(string='Geolocation (Lat,Lng)')
+        state_id = fields.Many2one('gymnest.state', string='Province', required=True)

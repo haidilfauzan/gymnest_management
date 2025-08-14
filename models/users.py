@@ -21,4 +21,9 @@ class GymnestUser(models.Model):
     state = fields.Selection(string='Status', selection=[('draft', 'Draft'), ('active', 'Active'), ('withdraw', 'Withdraw'), ('inactive', 'Inactive'), ('blacklist', 'Blacklist')], default='draft', tracking=True)  # state
     membership_ids = fields.One2many('gym.membership', 'member_id',string='Memberships')
     register_ids = fields.One2many('gym.register', 'member_id',string='Registers')
-    
+    state_id = fields.Many2one('gymnest.state', string='Province')
+    city_id = fields.Many2one(
+        'gymnest.city',
+        string='City',
+        domain="[('state_id', '=', state_id)]"  # Domain dinamis
+    )

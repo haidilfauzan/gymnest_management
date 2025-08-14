@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- ================================================== -->
+        <!-- ==                  SUMATERA                    == -->
+        <!-- ================================================== -->
+
+        <!-- Aceh -->
+        <record id="state_aceh" model="gymnest.state">
+            <field name="name">Aceh</field>
+            <field name="geolocation">4.6951, 96.7494</field>
+        </record>
+        <record id="city_banda_aceh" model="gymnest.city">
+            <field name="name">Banda Aceh</field>
+            <field name="state_id" ref="state_aceh"/>
+            <field name="geolocation">5.5483, 95.3238</field>
+        </record>
+        <record id="city_lhokseumawe" model="gymnest.city">
+            <field name="name">Lhokseumawe</field>
+            <field name="state_id" ref="state_aceh"/>
+            <field name="geolocation">5.1736, 97.1486</field>
+        </record>
+
+        <!-- Sumatera Utara -->
+        <record id="state_sumatera_utara" model="gymnest.state">
+            <field name="name">Sumatera Utara</field>
+            <field name="geolocation">2.1154, 99.5451</field>
+        </record>
+        <record id="city_medan" model="gymnest.city">
+            <field name="name">Medan</field>
+            <field name="state_id" ref="state_sumatera_utara"/>
+            <field name="geolocation">3.5952, 98.6722</field>
+        </record>
+        <record id="city_pematangsiantar" model="gymnest.city">
+            <field name="name">Pematangsiantar</field>
+            <field name="state_id" ref="state_sumatera_utara"/>
+            <field name="geolocation">2.9625, 99.0675</field>
+        </record>
+
+        <!-- Sumatera Barat -->
+        <record id="state_sumatera_barat" model="gymnest.state">
+            <field name="name">Sumatera Barat</field>
+            <field name="geolocation">-0.7399, 100.8000</field>
+        </record>
+        <record id="city_padang" model="gymnest.city">
+            <field name="name">Padang</field>
+            <field name="state_id" ref="state_sumatera_barat"/>
+            <field name="geolocation">-0.9471, 100.3622</field>
+        </record>
+        <record id="city_bukittinggi" model="gymnest.city">
+            <field name="name">Bukittinggi</field>
+            <field name="state_id" ref="state_sumatera_barat"/>
+            <field name="geolocation">-0.3052, 100.3698</field>
+        </record>
+
+        <!-- Riau -->
+        <record id="state_riau" model="gymnest.state">
+            <field name="name">Riau</field>
+            <field name="geolocation">0.2933, 101.7068</field>
+        </record>
+        <record id="city_pekanbaru" model="gymnest.city">
+            <field name="name">Pekanbaru</field>
+            <field name="state_id" ref="state_riau"/>
+            <field name="geolocation">0.5071, 101.4478</field>
+        </record>
+        <record id="city_dumai" model="gymnest.city">
+            <field name="name">Dumai</field>
+            <field name="state_id" ref="state_riau"/>
+            <field name="geolocation">1.6687, 101.4474</field>
+        </record>
+
+        <!-- Jambi -->
+        <record id="state_jambi" model="gymnest.state">
+            <field name="name">Jambi</field>
+            <field name="geolocation">-1.6101, 103.6131</field>
+        </record>
+        <record id="city_jambi" model="gymnest.city">
+            <field name="name">Jambi</field>
+            <field name="state_id" ref="state_jambi"/>
+            <field name="geolocation">-1.5900, 103.6100</field>
+        </record>
+
+        <!-- Sumatera Selatan -->
+        <record id="state_sumatera_selatan" model="gymnest.state">
+            <field name="name">Sumatera Selatan</field>
+            <field name="geolocation">-3.3194, 103.9141</field>
+        </record>
+        <record id="city_palembang" model="gymnest.city">
+            <field name="name">Palembang</field>
+            <field name="state_id" ref="state_sumatera_selatan"/>
+            <field name="geolocation">-2.9761, 104.7754</field>
+        </record>
+
+        <!-- Lampung -->
+        <record id="state_lampung" model="gymnest.state">
+            <field name="name">Lampung</field>
+            <field name="geolocation">-4.5586, 105.4068</field>
+        </record>
+        <record id="city_bandar_lampung" model="gymnest.city">
+            <field name="name">Bandar Lampung</field>
+            <field name="state_id" ref="state_lampung"/>
+            <field name="geolocation">-5.4500, 105.2667</field>
+        </record>
+
+        <!-- Kepulauan Bangka Belitung -->
+        <record id="state_bangka_belitung" model="gymnest.state">
+            <field name="name">Kepulauan Bangka Belitung</field>
+            <field name="geolocation">-2.7411, 106.4405</field>
+        </record>
+        <record id="city_pangkal_pinang" model="gymnest.city">
+            <field name="name">Pangkal Pinang</field>
+            <field name="state_id" ref="state_bangka_belitung"/>
+            <field name="geolocation">-2.1333, 106.1167</field>
+        </record>
+
+        <!-- Kepulauan Riau -->
+        <record id="state_kepulauan_riau" model="gymnest.state">
+            <field name="name">Kepulauan Riau</field>
+            <field name="geolocation">0.9257, 104.4623</field>
+        </record>
+        <record id="city_tanjungpinang" model="gymnest.city">
+            <field name="name">Tanjungpinang</field>
+            <field name="state_id" ref="state_kepulauan_riau"/>
+            <field name="geolocation">0.9167, 104.4500</field>
+        </record>
+        <record id="city_batam" model="gymnest.city">
+            <field name="name">Batam</field>
+            <field name="state_id" ref="state_kepulauan_riau"/>
+            <field name="geolocation">1.0420, 104.0304</field>
+        </record>
+
+        <!-- ================================================== -->
+        <!-- ==                    JAWA                      == -->
+        <!-- ================================================== -->
+
+        <!-- DKI Jakarta -->
+        <record id="state_dki_jakarta" model="gymnest.state">
+            <field name="name">DKI Jakarta</field>
+            <field name="geolocation">-6.2088, 106.8456</field>
+        </record>
+        <record id="city_jakarta_pusat" model="gymnest.city">
+            <field name="name">Jakarta Pusat</field>
+            <field name="state_id" ref="state_dki_jakarta"/>
+            <field name="geolocation">-6.1751, 106.8271</field>
+        </record>
+        <record id="city_jakarta_selatan" model="gymnest.city">
+            <field name="name">Jakarta Selatan</field>
+            <field name="state_id" ref="state_dki_jakarta"/>
+            <field name="geolocation">-6.2615, 106.8106</field>
+        </record>
+
+        <!-- Jawa Barat -->
+        <record id="state_jawa_barat" model="gymnest.state">
+            <field name="name">Jawa Barat</field>
+            <field name="geolocation">-6.9175, 107.6191</field>
+        </record>
+        <record id="city_bandung" model="gymnest.city">
+            <field name="name">Bandung</field>
+            <field name="state_id" ref="state_jawa_barat"/>
+            <field name="geolocation">-6.9175, 107.6191</field>
+        </record>
+        <record id="city_bekasi" model="gymnest.city">
+            <field name="name">Bekasi</field>
+            <field name="state_id" ref="state_jawa_barat"/>
+            <field name="geolocation">-6.2383, 106.9756</field>
+        </record>
+
+        <!-- Banten -->
+        <record id="state_banten" model="gymnest.state">
+            <field name="name">Banten</field>
+            <field name="geolocation">-6.4058, 106.0640</field>
+        </record>
+        <record id="city_serang" model="gymnest.city">
+            <field name="name">Serang</field>
+            <field name="state_id" ref="state_banten"/>
+            <field name="geolocation">-6.1156, 106.1549</field>
+        </record>
+        <record id="city_tangerang" model="gymnest.city">
+            <field name="name">Tangerang</field>
+            <field name="state_id" ref="state_banten"/>
+            <field name="geolocation">-6.1783, 106.6319</field>
+        </record>
+
+        <!-- Jawa Tengah -->
+        <record id="state_jawa_tengah" model="gymnest.state">
+            <field name="name">Jawa Tengah</field>
+            <field name="geolocation">-7.1509, 110.1403</field>
+        </record>
+        <record id="city_semarang" model="gymnest.city">
+            <field name="name">Semarang</field>
+            <field name="state_id" ref="state_jawa_tengah"/>
+            <field name="geolocation">-6.9667, 110.4381</field>
+        </record>
+        <record id="city_surakarta" model="gymnest.city">
+            <field name="name">Surakarta (Solo)</field>
+            <field name="state_id" ref="state_jawa_tengah"/>
+            <field name="geolocation">-7.5561, 110.8316</field>
+        </record>
+
+        <!-- DI Yogyakarta -->
+        <record id="state_di_yogyakarta" model="gymnest.state">
+            <field name="name">DI Yogyakarta</field>
+            <field name="geolocation">-7.7956, 110.3695</field>
+        </record>
+        <record id="city_yogyakarta" model="gymnest.city">
+            <field name="name">Yogyakarta</field>
+            <field name="state_id" ref="state_di_yogyakarta"/>
+            <field name="geolocation">-7.7956, 110.3695</field>
+        </record>
+
+        <!-- Jawa Timur -->
+        <record id="state_jawa_timur" model="gymnest.state">
+            <field name="name">Jawa Timur</field>
+            <field name="geolocation">-7.5361, 112.2384</field>
+        </record>
+        <record id="city_surabaya" model="gymnest.city">
+            <field name="name">Surabaya</field>
+            <field name="state_id" ref="state_jawa_timur"/>
+            <field name="geolocation">-7.2575, 112.7521</field>
+        </record>
+        <record id="city_malang" model="gymnest.city">
+            <field name="name">Malang</field>
+            <field name="state_id" ref="state_jawa_timur"/>
+            <field name="geolocation">-7.9666, 112.6326</field>
+        </record>
+
+        <!-- ================================================== -->
+        <!-- ==              BALI & NUSA TENGGARA            == -->
+        <!-- ================================================== -->
+
+        <!-- Bali -->
+        <record id="state_bali" model="gymnest.state">
+            <field name="name">Bali</field>
+            <field name="geolocation">-8.4095, 115.1889</field>
+        </record>
+        <record id="city_denpasar" model="gymnest.city">
+            <field name="name">Denpasar</field>
+            <field name="state_id" ref="state_bali"/>
+            <field name="geolocation">-8.6500, 115.2167</field>
+        </record>
+
+        <!-- Nusa Tenggara Barat -->
+        <record id="state_ntb" model="gymnest.state">
+            <field name="name">Nusa Tenggara Barat</field>
+            <field name="geolocation">-8.6530, 117.3616</field>
+        </record>
+        <record id="city_mataram" model="gymnest.city">
+            <field name="name">Mataram</field>
+            <field name="state_id" ref="state_ntb"/>
+            <field name="geolocation">-8.5833, 116.1167</field>
+        </record>
+
+        <!-- Nusa Tenggara Timur -->
+        <record id="state_ntt" model="gymnest.state">
+            <field name="name">Nusa Tenggara Timur</field>
+            <field name="geolocation">-8.6574, 121.0794</field>
+        </record>
+        <record id="city_kupang" model="gymnest.city">
+            <field name="name">Kupang</field>
+            <field name="state_id" ref="state_ntt"/>
+            <field name="geolocation">-10.1633, 123.5833</field>
+        </record>
+
+        <!-- ================================================== -->
+        <!-- ==                 KALIMANTAN                   == -->
+        <!-- ================================================== -->
+
+        <!-- Kalimantan Barat -->
+        <record id="state_kalimantan_barat" model="gymnest.state">
+            <field name="name">Kalimantan Barat</field>
+            <field name="geolocation">-0.2787, 111.4753</field>
+        </record>
+        <record id="city_pontianak" model="gymnest.city">
+            <field name="name">Pontianak</field>
+            <field name="state_id" ref="state_kalimantan_barat"/>
+            <field name="geolocation">-0.0265, 109.3425</field>
+        </record>
+
+        <!-- Kalimantan Tengah -->
+        <record id="state_kalimantan_tengah" model="gymnest.state">
+            <field name="name">Kalimantan Tengah</field>
+            <field name="geolocation">-1.6937, 113.2827</field>
+        </record>
+        <record id="city_palangkaraya" model="gymnest.city">
+            <field name="name">Palangka Raya</field>
+            <field name="state_id" ref="state_kalimantan_tengah"/>
+            <field name="geolocation">-2.2099, 113.9109</field>
+        </record>
+
+        <!-- Kalimantan Selatan -->
+        <record id="state_kalimantan_selatan" model="gymnest.state">
+            <field name="name">Kalimantan Selatan</field>
+            <field name="geolocation">-3.0926, 115.2838</field>
+        </record>
+        <record id="city_banjarmasin" model="gymnest.city">
+            <field name="name">Banjarmasin</field>
+            <field name="state_id" ref="state_kalimantan_selatan"/>
+            <field name="geolocation">-3.3167, 114.5900</field>
+        </record>
+
+        <!-- Kalimantan Timur -->
+        <record id="state_kalimantan_timur" model="gymnest.state">
+            <field name="name">Kalimantan Timur</field>
+            <field name="geolocation">0.5387, 116.4206</field>
+        </record>
+        <record id="city_samarinda" model="gymnest.city">
+            <field name="name">Samarinda</field>
+            <field name="state_id" ref="state_kalimantan_timur"/>
+            <field name="geolocation">-0.5021, 117.1536</field>
+        </record>
+        <record id="city_balikpapan" model="gymnest.city">
+            <field name="name">Balikpapan</field>
+            <field name="state_id" ref="state_kalimantan_timur"/>
+            <field name="geolocation">-1.2654, 116.8285</field>
+        </record>
+
+        <!-- Kalimantan Utara -->
+        <record id="state_kalimantan_utara" model="gymnest.state">
+            <field name="name">Kalimantan Utara</field>
+            <field name="geolocation">3.0731, 116.0413</field>
+        </record>
+        <record id="city_tanjung_selor" model="gymnest.city">
+            <field name="name">Tanjung Selor</field>
+            <field name="state_id" ref="state_kalimantan_utara"/>
+            <field name="geolocation">2.8375, 117.3650</field>
+        </record>
+
+        <!-- ================================================== -->
+        <!-- ==                  SULAWESI                    == -->
+        <!-- ================================================== -->
+
+        <!-- Sulawesi Utara -->
+        <record id="state_sulawesi_utara" model="gymnest.state">
+            <field name="name">Sulawesi Utara</field>
+            <field name="geolocation">1.5546, 124.6946</field>
+        </record>
+        <record id="city_manado" model="gymnest.city">
+            <field name="name">Manado</field>
+            <field name="state_id" ref="state_sulawesi_utara"/>
+            <field name="geolocation">1.4748, 124.8421</field>
+        </record>
+
+        <!-- Gorontalo -->
+        <record id="state_gorontalo" model="gymnest.state">
+            <field name="name">Gorontalo</field>
+            <field name="geolocation">0.6999, 122.4467</field>
+        </record>
+        <record id="city_gorontalo" model="gymnest.city">
+            <field name="name">Gorontalo</field>
+            <field name="state_id" ref="state_gorontalo"/>
+            <field name="geolocation">0.5412, 123.0595</field>
+        </record>
+
+        <!-- Sulawesi Tengah -->
+        <record id="state_sulawesi_tengah" model="gymnest.state">
+            <field name="name">Sulawesi Tengah</field>
+            <field name="geolocation">-1.4300, 121.4456</field>
+        </record>
+        <record id="city_palu" model="gymnest.city">
+            <field name="name">Palu</field>
+            <field name="state_id" ref="state_sulawesi_tengah"/>
+            <field name="geolocation">-0.8987, 119.8707</field>
+        </record>
+
+        <!-- Sulawesi Barat -->
+        <record id="state_sulawesi_barat" model="gymnest.state">
+            <field name="name">Sulawesi Barat</field>
+            <field name="geolocation">-2.4930, 119.3919</field>
+        </record>
+        <record id="city_mamuju" model="gymnest.city">
+            <field name="name">Mamuju</field>
+            <field name="state_id" ref="state_sulawesi_barat"/>
+            <field name="geolocation">-2.6734, 118.8891</field>
+        </record>
+
+        <!-- Sulawesi Selatan -->
+        <record id="state_sulawesi_selatan" model="gymnest.state">
+            <field name="name">Sulawesi Selatan</field>
+            <field name="geolocation">-4.2440, 119.9538</field>
+        </record>
+        <record id="city_makassar" model="gymnest.city">
+            <field name="name">Makassar</field>
+            <field name="state_id" ref="state_sulawesi_selatan"/>
+            <field name="geolocation">-5.1477, 119.4327</field>
+        </record>
+
+        <!-- Sulawesi Tenggara -->
+        <record id="state_sulawesi_tenggara" model="gymnest.state">
+            <field name="name">Sulawesi Tenggara</field>
+            <field name="geolocation">-4.1449, 122.1746</field>
+        </record>
+        <record id="city_kendari" model="gymnest.city">
+            <field name="name">Kendari</field>
+            <field name="state_id" ref="state_sulawesi_tenggara"/>
+            <field name="geolocation">-3.9983, 122.5125</field>
+        </record>
+
+        <!-- ================================================== -->
+        <!-- ==             MALUKU & PAPUA                   == -->
+        <!-- ================================================== -->
+
+        <!-- Maluku -->
+        <record id="state_maluku" model="gymnest.state">
+            <field name="name">Maluku</field>
+            <field name="geolocation">-3.2143, 130.1453</field>
+        </record>
+        <record id="city_ambon" model="gymnest.city">
+            <field name="name">Ambon</field>
+            <field name="state_id" ref="state_maluku"/>
+            <field name="geolocation">-3.6553, 128.1906</field>
+        </record>
+
+        <!-- Maluku Utara -->
+        <record id="state_maluku_utara" model="gymnest.state">
+            <field name="name">Maluku Utara</field>
+            <field name="geolocation">1.5709, 127.8087</field>
+        </record>
+        <record id="city_sofifi" model="gymnest.city">
+            <field name="name">Sofifi</field>
+            <field name="state_id" ref="state_maluku_utara"/>
+            <field name="geolocation">0.7251, 127.5751</field>
+        </record>
+
+        <!-- Papua Barat -->
+        <record id="state_papua_barat" model="gymnest.state">
+            <field name="name">Papua Barat</field>
+            <field name="geolocation">-2.1803, 133.1749</field>
+        </record>
+        <record id="city_manokwari" model="gymnest.city">
+            <field name="name">Manokwari</field>
+            <field name="state_id" ref="state_papua_barat"/>
+            <field name="geolocation">-0.8667, 134.0500</field>
+        </record>
+
+        <!-- Papua -->
+        <record id="state_papua" model="gymnest.state">
+            <field name="name">Papua</field>
+            <field name="geolocation">-4.2699, 138.0804</field>
+        </record>
+        <record id="city_jayapura" model="gymnest.city">
+            <field name="name">Jayapura</field>
+            <field name="state_id" ref="state_papua"/>
+            <field name="geolocation">-2.5333, 140.7167</field>
+        </record>
+
+        <!-- Papua Selatan -->
+        <record id="state_papua_selatan" model="gymnest.state">
+            <field name="name">Papua Selatan</field>
+            <field name="geolocation">-7.2333, 139.4667</field>
+        </record>
+        <record id="city_merauke" model="gymnest.city">
+            <field name="name">Merauke</field>
+            <field name="state_id" ref="state_papua_selatan"/>
+            <field name="geolocation">-8.4944, 140.4014</field>
+        </record>
+
+        <!-- Papua Tengah -->
+        <record id="state_papua_tengah" model="gymnest.state">
+            <field name="name">Papua Tengah</field>
+            <field name="geolocation">-3.8500, 136.2500</field>
+        </record>
+        <record id="city_nabire" model="gymnest.city">
+            <field name="name">Nabire</field>
+            <field name="state_id" ref="state_papua_tengah"/>
+            <field name="geolocation">-3.3667, 135.5000</field>
+        </record>
+
+        <!-- Papua Pegunungan -->
+        <record id="state_papua_pegunungan" model="gymnest.state">
+            <field name="name">Papua Pegunungan</field>
+            <field name="geolocation">-4.2500, 139.0000</field>
+        </record>
+        <record id="city_wamena" model="gymnest.city">
+            <field name="name">Wamena</field>
+            <field name="state_id" ref="state_papua_pegunungan"/>
+            <field name="geolocation">-4.0972, 138.9556</field>
+        </record>
+
+        <!-- Papua Barat Daya -->
+        <record id="state_papua_barat_daya" model="gymnest.state">
+            <field name="name">Papua Barat Daya</field>
+            <field name="geolocation">-1.0000, 131.2500</field>
+        </record>
+        <record id="city_sorong" model="gymnest.city">
+            <field name="name">Sorong</field>
+            <field name="state_id" ref="state_papua_barat_daya"/>
+            <field name="geolocation">-0.8833, 131.2500</field>
+        </record>
+
+    </data>
+</odoo>

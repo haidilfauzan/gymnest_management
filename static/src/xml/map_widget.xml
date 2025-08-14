@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<templates xml:space="preserve">
-    <t t-name="gymnest_management.MapPickerWidget" owl="1">
-        <div>
-            <!-- The input field to show the coordinate string -->
-            <input type="text" class="o_input" t-att-value="props.value || ''" readonly="1"/>
-
-            <!-- The div where the map will be rendered -->
-            <div t-ref="map" style="height: 300px; width: 100%; margin-top: 5px;"></div>
-        </div>
+<templates>
+    <t t-name="gymnest_management.LeafletMapWidget" t-inherit="web.CharField" t-inherit-mode="primary" owl="1">
+        <xpath expr="//input" position="replace">
+            <div>
+                <!-- PERBAIKAN: Tambahkan pemeriksaan untuk memastikan props.record.data ada sebelum diakses -->
+                <input type="text" class="o_input" t-att-value="props.record and props.record.data ? (props.record.data[props.name] || '') : ''" readonly="1"/>
+                <!-- Container untuk peta Leaflet -->
+                <div t-ref="mapContainer" style="height: 400px; width: 100%; margin-top: 5px; border-radius: 5px;"></div>
+            </div>
+        </xpath>
     </t>
 </templates>

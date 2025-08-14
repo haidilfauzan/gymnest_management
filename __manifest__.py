@@ -6,9 +6,11 @@
     'author': 'Anda',
     'website': '',
     'category': 'Services/Gym',
-    'depends': ['base', 'web'],
+    'depends': ['base', 'web','web_map'],
     'data': [
         'security/ir.model.access.csv',
+        'data/location_data.xml',
+        'views/location_views.xml',
         'views/package_views.xml',
         'views/gym_views.xml',
         'views/user_views.xml',
@@ -18,13 +20,14 @@
         'report/membership_report.xml',
         
     ],
-    'assets': {
-        'web.assets_backend': [
-            # Daftarkan file JS dan XML Anda di sini
-            'gymnest_management/static/src/js/map_widget.js',
-            'gymnest_management/static/src/xml/map_widget.xml',
-        ],
-    },
+    # 'assets': {
+    #     'web.assets_backend': [
+    #         'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css',
+    #         'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js',
+    #         'gymnest_management/static/src/js/map_widget.js',
+    #         'gymnest_management/static/src/xml/map_widget.xml',
+    #     ],
+    # },
     'installable': True,
     'application': True,
     'license': 'LGPL-3',

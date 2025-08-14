@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ================================================== -->
+    <!-- ==      Tampilan untuk Provinsi (State)           == -->
+    <!-- ================================================== -->
+
+    <!-- List/Tree View untuk Provinsi -->
+    <record id="view_gymnest_state_list" model="ir.ui.view">
+        <field name="name">gymnest.state.list</field>
+        <field name="model">gymnest.state</field>
+        <field name="arch" type="xml">
+            <list string="Provinces">
+                <field name="name"/>
+                <field name="geolocation"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View untuk Provinsi -->
+    <record id="view_gymnest_state_form" model="ir.ui.view">
+        <field name="name">gymnest.state.form</field>
+        <field name="model">gymnest.state</field>
+        <field name="arch" type="xml">
+            <form string="Province">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="geolocation"/>
+                    </group>
+                    <notebook>
+                        <page string="Cities">
+                            <field name="city_ids" readonly="1">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="geolocation"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ================================================== -->
+    <!-- ==         Tampilan untuk Kota (City)             == -->
+    <!-- ================================================== -->
+
+    <!-- List/Tree View untuk Kota -->
+    <record id="view_gymnest_city_list" model="ir.ui.view">
+        <field name="name">gymnest.city.list</field>
+        <field name="model">gymnest.city</field>
+        <field name="arch" type="xml">
+            <list string="Cities" editable="bottom">
+                <field name="name"/>
+                <field name="state_id"/>
+                <field name="geolocation"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View untuk Kota -->
+    <record id="view_gymnest_city_form" model="ir.ui.view">
+        <field name="name">gymnest.city.form</field>
+        <field name="model">gymnest.city</field>
+        <field name="arch" type="xml">
+            <form string="City">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="state_id"/>
+                        <field name="geolocation"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ================================================== -->
+    <!-- ==             Actions & Menu Items             == -->
+    <!-- ================================================== -->
+
+    <!-- Window Action untuk Provinsi -->
+    <record id="action_gymnest_state" model="ir.actions.act_window">
+        <field name="name">Provinces</field>
+        <field name="res_model">gymnest.state</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Window Action untuk Kota -->
+    <record id="action_gymnest_city" model="ir.actions.act_window">
+        <field name="name">Cities</field>
+        <field name="res_model">gymnest.city</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Menu Item Utama untuk Konfigurasi Lokasi -->
+    <menuitem
+        id="menu_gymnest_location_config"
+        name="Location Configuration"
+        parent="menu_gym_root"
+        sequence="100"/>
+
+    <!-- Sub-Menu untuk Provinsi -->
+    <menuitem
+        id="menu_gymnest_state"
+        name="Provinces"
+        parent="menu_gymnest_location_config"
+        action="action_gymnest_state"
+        sequence="10"/>
+
+    <!-- Sub-Menu untuk Kota -->
+    <menuitem
+        id="menu_gymnest_city"
+        name="Cities"
+        parent="menu_gymnest_location_config"
+        action="action_gymnest_city"
+        sequence="20"/>
+
+</odoo>

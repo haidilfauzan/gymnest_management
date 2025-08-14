@@ -11,7 +11,6 @@
                 <field name="user_type"/>
                 <field name="gender"/>
                 <field name="state"/>
-
                 <templates>
                     <t t-name="card" class="flex-row">
 <!--                        <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active"/>-->
@@ -23,28 +22,16 @@
                                     <field name="name" class="mb-0 fw-bold fs-5"/>
                                 </div>
                                 <field name="login" class="text-truncate"/>
-
                             </main>
                         <footer>
                             <field name="gender"/>
                             <field name="state"/>
                         </footer>
-<!--                        <div class="o_kanban_record">-->
-<!--                            <div class="o_kanban_image">-->
-<!--                                <img t-att-src="kanban_image('gymnest.user', 'photo', record.id.value)" class="img img-fluid"/>-->
-<!--                            </div>-->
-<!--                            <div class="o_kanban_details">-->
-<!--                                <span><field name="user_type"/></span><br/>-->
-<!--                                <span></span><br/>-->
-<!--                                <span>Status: <field name="state"/></span>-->
-<!--                            </div>-->
-
                     </t>
                 </templates>
             </kanban>
         </field>
     </record>
-
     <!-- List View -->
     <record id="view_gymnest_user_list" model="ir.ui.view">
         <field name="name">gymnest.user.list</field>
@@ -61,7 +48,6 @@
             </list>
         </field>
     </record>
-
     <!-- Form View -->
     <record id="view_gymnest_user_form" model="ir.ui.view">
         <field name="name">gymnest.user.form</field>
@@ -83,21 +69,21 @@
                             <field name="user_type"/>
                             <field name="gender"/>
                             <field name="date_of_birth"/>
-
-                        </group>
-                        <group>
-                            <field name="join_date"/>
-                             <field name="geolocation"/>
-                            <field name="mobile_number"/>
+                             <field name="join_date"/>
+                              <field name="mobile_number"/>
                             <field name="login" string="Email"/>
-
+                        </group>
+                        <group  string="Location">
+                             <field name="state_id"/>
+                                <field name="city_id"/>
+                                <field name="address"/>
+                                 <field name="geolocation"/>
                         </group>
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
-
         <!-- Action -->
     <record id="action_gymnest_user" model="ir.actions.act_window">
         <field name="name">Gymnest Users</field>
