@@ -6,7 +6,7 @@
     'author': 'Anda',
     'website': '',
     'category': 'Services/Gym',
-    'depends': ['base', 'web','web_map'],
+    'depends': ['base', 'web'],
     'data': [
         'security/ir.model.access.csv',
         'data/location_data.xml',
