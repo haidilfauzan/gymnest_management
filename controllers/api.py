@@ -349,3 +349,62 @@ class GymAPI(http.Controller):
         except Exception as e:
             _logger.error(f"Error updating gymnest user profile: {e}", exc_info=True)
             return {'status': 'error', 'message': str(e)}
+
+        # --- FUNGSI BARU UNTUK REGISTRASI USER ---
+
+    @http.route('/api/register_user', type='json', auth='public', methods=['POST'], csrf=False)
+    def register_user(self, **kw):
+        """
+        Menerima data dari form registrasi dan membuat record
+        res.users dan gymnest.user baru.
+        """
+        required_fields = ['name', 'email', 'password', 'mobile_number', 'date_of_birth', 'gender']
+
+        # Cek apakah semua field yang dibutuhkan ada
+        if not all(field in kw for field in required_fields):
+            return {'status': 'error', 'message': 'Missing required fields.'}
+
+        try:
+            # Cek apakah email (login) sudah ada
+            existing_user = request.env['res.users'].sudo().search([('login', '=', kw.get('email'))])
+            if existing_user:
+                return {'status': 'error', 'message': 'Email already exists.'}
+
+            # 1. Buat record di res.users terlebih dahulu
+            new_user_vals = {
+                'name': kw.get('name'),
+                'login': kw.get('email'),
+                'password': kw.get('password'),
+                # Odoo secara otomatis akan meng-hash password
+            }
+            new_user = request.env['res.users'].sudo().create(new_user_vals)
+
+            # 2. Buat record di gymnest.user dengan menghubungkannya ke res.users
+            new_gymnest_user_vals = {
+                'user_id': new_user.id,
+                'mobile_number': kw.get('mobile_number'),
+                'date_of_birth': kw.get('date_of_birth'),
+                'gender': kw.get('gender'),
+                'state_id': kw.get('state_id'),
+                'city_id': kw.get('city_id'),
+                'user_type': 'member',  # Default user type
+                'state': 'active',  # Default state
+            }
+            request.env['gymnest.user'].sudo().create(new_gymnest_user_vals)
+
+            return {'status': 'success', 'message': 'User registered successfully! Please log in.'}
+
+        except Exception as e:
+            _logger.error(f"Error during user registration: {e}", exc_info=True)
+            return {'status': 'error', 'message': str(e)}
+
+    # --- API UNTUK MENGAMBIL DATA PROVINSI & KOTA ---
+    @http.route('/api/states', type='http', auth='public', methods=['GET'], csrf=False)
+    def get_states(self, **kw):
+        states = request.env['gymnest.state'].search_read([], ['id', 'name'])
+        return request.make_json_response({'status': 'success', 'data': states})
+
+    @http.route('/api/cities/<int:state_id>', type='http', auth='public', methods=['GET'], csrf=False)
+    def get_cities_by_state(self, state_id, **kw):
+        cities = request.env['gymnest.city'].search_read([('state_id', '=', state_id)], ['id', 'name'])
+        return request.make_json_response({'status': 'success', 'data': cities})
