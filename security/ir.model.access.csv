@@ -16,3 +16,5 @@ access_add_payment,access.add.payment,model_add_payment,base.group_user,1,1,1,1
 access_gym_membership,access.gym.membership,model_gym_membership,base.group_user,1,1,1,1
 access_gymnest_state,access.gymnest.state,model_gymnest_state,base.group_user,1,1,1,1
 access_gymnest_city,access.gymnest.city,model_gymnest_city,base.group_user,1,1,1,1
+access_gymnest_state_public,access.gymnest.state.public,model_gymnest_state,base.group_public,1,0,0,0
+access_gymnest_city_public,access.gymnest.city.public,model_gymnest_city,base.group_public,1,0,0,0
